@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: ''
+  description: 'search addresses from gouv.fr'
   version: v01
   title: ADDRESS
 host: 'OIC-gse00014212.uscom-east-1.oraclecloud.com:443'
@@ -13,10 +13,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: country
-          in: query
-          required: false
-          type: string
         - name: query
           in: query
           required: false
