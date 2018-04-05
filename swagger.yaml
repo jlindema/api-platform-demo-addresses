@@ -26,25 +26,14 @@ paths:
           required: false
           type: string
       responses:
-        # Response code
-        200:
-          description: Réponse OK
-          # A schema describing your response object.
-          # Use JSON Schema format
+        '500':
+          description: Faults
+          schema:
+            $ref: '#/definitions/APIInvocationError'
+        '200':
+          description: A sample description of the Response
           schema:
             $ref: '#/definitions/response-wrapper'
-        400:
-          description: Requête mal formatée
-          schema:
-            # description: Informations erreur
-            $ref: '#/definitions/erreur'
-        404:
-          description: Personne non trouvée
-        500:
-          description: Erreur interne
-          schema:
-            # description: Informations erreur
-            $ref: '#/definitions/APIInvocationError'
 definitions:
   response-wrapper:
     type: object
@@ -122,16 +111,3 @@ definitions:
             - instance
             - title
             - type
-  erreur:
-    description: Structure de retour d'erreur
-    properties:
-      codeErreur: 
-        type: integer
-        enum:
-          - 1
-          - 2
-          - 3
-        description: Indique le numéro de l'erreur
-      libelleErreur:
-        type: string
-        description: Description littérale de l'erreur
