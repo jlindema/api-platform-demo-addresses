@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  description: ''
+  version: v01
+  title: ADDRESS
+host: 'OIC-gse00014212.uscom-east-1.oraclecloud.com:443'
+basePath: /ic/api/integration/v1/flows/rest/ADDRESS/1.0
+schemes:
+  - https
+paths:
+  /:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: query
+          required: false
+          type: string
+        - name: query
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: string
+      responses:
+        # Response code
+        200:
+          description: Réponse OK
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            $ref: '#/definitions/response-wrapper'
+        400:
+          description: Requête mal formatée
+          schema:
+            # description: Informations erreur
+            $ref: '#/definitions/erreur'
+        404:
+          description: Personne non trouvée
+        500:
+          description: Erreur interne
+          schema:
+            # description: Informations erreur
+            $ref: '#/definitions/APIInvocationError'
+definitions:
+  response-wrapper:
+    type: object
+    required:
+      - adresses
+      - limit
+      - query
+    properties:
+      query:
+        type: string
+      limit:
+        type: number
+      adresses:
+        type: array
+        items:
+          type: object
+          properties:
+            country:
+              type: string
+            city:
+              type: string
+            name:
+              type: string
+            postcode:
+              type: string
+            label:
+              type: string
+            type:
+              type: string
+            states:
+              type: string
+          required:
+            - city
+            - country
+            - label
+            - name
+            - postcode
+            - states
+            - type
+  APIInvocationError:
+    type: object
+    required:
+      - detail
+      - errorCode
+      - errorDetails
+      - title
+      - type
+    properties:
+      type:
+        type: string
+      title:
+        type: string
+      detail:
+        type: string
+      errorCode:
+        type: string
+      errorDetails:
+        type: array
+        items:
+          type: object
+          properties:
+            instance:
+              type: string
+            errorCode:
+              type: string
+            type:
+              type: string
+            title:
+              type: string
+            errorPath:
+              type: string
+          required:
+            - errorCode
+            - errorPath
+            - instance
+            - title
+            - type
+  erreur:
+    description: Structure de retour d'erreur
+    properties:
+      codeErreur: 
+        type: integer
+        enum:
+          - 1
+          - 2
+          - 3
+        description: Indique le numéro de l'erreur
+      libelleErreur:
+        type: string
+        description: Description littérale de l'erreur
