@@ -3,8 +3,8 @@ info:
   description: 'search addresses from gouv.fr'
   version: v02
   title: Addresses
-host: 'OIC-gse00014212.uscom-east-1.oraclecloud.com:443'
-basePath: /ic/api/integration/v1/flows/rest/addresses/1.0
+host: 'apipcs1733v3-apipcs1733v3-njv8nlzk.srv.ravcloud.com:8001'
+basePath: /address
 schemes:
   - https
 paths:
